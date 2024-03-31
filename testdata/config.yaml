@@ -1,0 +1,58 @@
+proxies:
+  - name: "socks"
+    type: socks5
+    server: server
+    port: 443
+    tls: true
+    skip-cert-verify: true
+    udp: true
+  - name: "socks-password"
+    type: socks5
+    server: server
+    port: 443
+    username: username
+    password: password
+  - name: "http"
+    type: http
+    server: server
+    port: 443
+    username: username
+    password: password
+    tls: true
+    skip-cert-verify: true
+    sni: custom.com
+  - name: "ss1"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    udp: true
+  - name: "ss2"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    smux:
+      enabled: false
+      protocol: smux
+  - name: "ss3"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: websocket
+      tls: true
+  - name: "hysteria2"
+    type: hysteria2
+    server: server.com
+    port: 443
+    password: yourpassword
+    obfs: salamander
+    obfs-password: yourpassword
+    sni: server.com
+    skip-cert-verify: true
