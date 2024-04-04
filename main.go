@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/ysicing/clash2singbox/convert"
 	"github.com/ysicing/clash2singbox/model/clash"
@@ -65,8 +66,9 @@ func main() {
 			panic(err)
 		}
 	}
-
-	outb, err = convert.Patch(outb, s, include, exclude, singList, tags...)
+	name := strings.Split(path, ".")[0]
+	name = strings.Split(name, "/")[len(strings.Split(name, "/"))-1]
+	outb, err = convert.Patch(outb, s, name, include, exclude, singList, tags...)
 	if err != nil {
 		panic(err)
 	}

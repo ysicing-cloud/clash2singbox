@@ -49,8 +49,8 @@ func getTags(s []singbox.SingBoxOut) []string {
 	})
 }
 
-func Patch(b []byte, s []singbox.SingBoxOut, include, exclude string, extOut []interface{}, extags ...string) ([]byte, error) {
-	d, err := PatchMap(b, s, include, exclude, extOut, extags, true)
+func Patch(b []byte, s []singbox.SingBoxOut, name, include, exclude string, extOut []interface{}, extags ...string) ([]byte, error) {
+	d, err := PatchMap(b, s, name, include, exclude, extOut, extags, true)
 	if err != nil {
 		return nil, fmt.Errorf("Patch: %w", err)
 	}
@@ -75,7 +75,7 @@ func ToInsecure(c *clash.Clash) {
 func PatchMap(
 	tpl []byte,
 	s []singbox.SingBoxOut,
-	include, exclude string,
+	name, include, exclude string,
 	extOut []interface{},
 	extags []string,
 	urltestOut bool,
@@ -104,15 +104,16 @@ func PatchMap(
 	}
 
 	if urltestOut {
+		t := fmt.Sprintf("%s-urltest", name)
 		s = append([]singbox.SingBoxOut{{
 			Type:      "selector",
-			Tag:       "select",
-			Outbounds: append([]string{"urltest"}, tags...),
-			Default:   "urltest",
+			Tag:       fmt.Sprintf("%s-select", name),
+			Outbounds: append([]string{t}, tags...),
+			Default:   t,
 		}}, s...)
 		s = append(s, singbox.SingBoxOut{
 			Type:      "urltest",
-			Tag:       "urltest",
+			Tag:       t,
 			Outbounds: ftags,
 		})
 	}

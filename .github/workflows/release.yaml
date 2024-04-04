@@ -25,7 +25,7 @@ jobs:
           go_version: latest
           dest: dist
           prefix: clash2singbox
-          targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm,linux/arm64,darwin/arm64,darwin/amd64
+          targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64,darwin/amd64
           # Show less information
           v: false
           x: false
