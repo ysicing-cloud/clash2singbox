@@ -56,3 +56,11 @@ proxies:
     obfs-password: yourpassword
     sni: server.com
     skip-cert-verify: true
+  - name: "trojan"
+    type: trojan
+    server: server.com
+    port: 443
+    password: yourpassword
+    sni: server.com
+    skip-cert-verify: true
+    udp: true

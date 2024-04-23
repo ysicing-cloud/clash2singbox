@@ -14,6 +14,7 @@ var convertMap = map[string]func(*clash.Proxies, *singbox.SingBoxOut) ([]singbox
 	"http":        oldConver(httpOpts),
 	"socks":       oldConver(socks5),
 	"hysteria2":   hysteia2,
+	"trojan":      oldConver(trojan),
 }
 
 func oldConver(f func(*clash.Proxies, *singbox.SingBoxOut) error) func(*clash.Proxies, *singbox.SingBoxOut) ([]singbox.SingBoxOut, error) {
@@ -54,6 +55,7 @@ var typeMap = map[string]string{
 	"socks5":    "socks",
 	"http":      "http",
 	"hysteria2": "hysteria2",
+	"trojan":    "trojan",
 }
 
 func comm(p *clash.Proxies) (*singbox.SingBoxOut, string, error) {
